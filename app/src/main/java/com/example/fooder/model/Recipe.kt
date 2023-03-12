@@ -1,30 +1,21 @@
 package com.example.fooder.model
 
 import com.example.fooder.BuildConfig
-import retrofit2.Call
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import retrofit2.http.GET
 import retrofit2.http.Query
 
 data class Recipe (
-//    var uri: String?,
     var label: String?,
-//    var image: String?,
-//    var source: String?,
-//    var url: String?,
-//    var shareAs: String?,
-//    var dietLabels: List<String>?,
-//    var healthLabels: List<String>?,
-//    var cautions: List<String>?,
-//    var ingredientLines: List<String>?,
-//    var calories: Float?,
-//    var totalWeight: Float?,
-//    var totalTime: Float?,
-//    var cuisineType: List<String>?,
-//    var mealType: List<String>?,
-//    var dishType: List<String>?,
+    var image: String?,
+    var url: String?,
+    var shareAs: String?,
+    var healthLabels: List<String>?,
+    var calories: Float?,
 )
+
+data class Success(val recipes: List<Recipe>)
 
 data class Hit (
     var recipe: Recipe?

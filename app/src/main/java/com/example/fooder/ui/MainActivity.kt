@@ -3,10 +3,7 @@ package com.example.fooder.ui
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
-import androidx.compose.foundation.layout.Box
-import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.text.KeyboardOptions
@@ -18,8 +15,10 @@ import androidx.compose.material3.*
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.modifier.modifierLocalConsumer
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavHostController
@@ -28,7 +27,9 @@ import androidx.navigation.NavController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
+import coil.compose.AsyncImage
 import com.example.fooder.R
+import com.example.fooder.model.Recipe
 import com.example.fooder.model.TabItem
 import com.example.fooder.ui.theme.FooderTheme
 import com.example.fooder.viewmodel.NavigationViewModel
@@ -55,7 +56,6 @@ class MainActivity : ComponentActivity() {
 fun MyApp() {
     val pages = listOf(
         TabItem("Home", Icons.Filled.Home, "home"),
-        TabItem("Favourites", Icons.Filled.Favorite, "favourites"),
         TabItem("Info", Icons.Filled.Info, "info"),
     )
     PageSkeleton(items = pages)
@@ -74,7 +74,16 @@ fun DefaultPreview() {
 fun PageSkeleton(items: List<TabItem>) {
     val navController = rememberNavController()
     Scaffold(
-        topBar = { SmallTopAppBar(title = { Text(stringResource(id = R.string.app_name) ) }) },
+        topBar = {
+            SmallTopAppBar(
+                title = {
+                    Text(
+                        stringResource(id = R.string.app_name),
+                        style = MaterialTheme.typography.headlineLarge,
+                    )
+                }
+            )
+        },
         content = {
             Box(modifier = Modifier.padding(it))
             {
@@ -87,21 +96,31 @@ fun PageSkeleton(items: List<TabItem>) {
 
 @Composable
 fun MainScreen() {
-    Column (
-        horizontalAlignment = Alignment.CenterHorizontally,
-    ) {
-        RecipeSearch()
-    }
+    RecipeSearchPage()
 }
 
 @Composable
 fun InfoScreen() {
-    Text("Info")
-}
-
-@Composable
-fun FavouritesScreen() {
-    Text("Favourites")
+    Column (
+        horizontalAlignment = Alignment.Start,
+    ) {
+        Text(
+            text = "Info",
+            style = MaterialTheme.typography.headlineMedium,
+        )
+        Text(
+            text = "This application was implemented as a final project for the mobile development with native technologies course",
+            style = MaterialTheme.typography.bodyMedium,
+        )
+        Text(
+            text = "It prints searches the dish by provided ingredients and displays found data",
+            style = MaterialTheme.typography.bodyMedium,
+        )
+        Text(
+            text = "Also it implements MMVM architecture",
+            style = MaterialTheme.typography.bodyMedium,
+        )
+    }
 }
 
 @Composable
@@ -131,36 +150,8 @@ fun MyNavController(navController: NavHostController) {
         composable("home") {
             MainScreen()
         }
-        composable("favourites") {
-            FavouritesScreen()
-        }
         composable("info") {
             InfoScreen()
-        }
-    }
-}
-
-@Composable
-fun RecipeSearch(recipeSearchViewModel: RecipeSearchViewModel = viewModel()) {
-    Column(
-        modifier = Modifier.padding(8.dp),
-        horizontalAlignment = Alignment.CenterHorizontally,
-    ) {
-        TextField(
-            value = recipeSearchViewModel.query,
-            onValueChange = { recipeSearchViewModel.updateQuery(it) },
-            singleLine = true,
-            label = { Text(text = "Input ingredient") }
-        )
-        Button(onClick = {
-            recipeSearchViewModel.getRecipes()
-        }) {
-            Text(text = "Find recipe")
-        }
-        LazyColumn {
-            items(recipeSearchViewModel.recipes) {recipe->
-                Text(recipe.label ?: "")
-            }
         }
     }
 }
