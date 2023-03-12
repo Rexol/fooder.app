@@ -1,4 +1,16 @@
 <resources>
     <string name="app_name">Fooder.app</string>
     <string name="placeholder">placeholder</string>
+    <string name="info_page_title">Info</string>
+    <string name="info_why">This application was implemented as a final project for the mobile development with native technologies course</string>
+    <string name="info_what">It prints searches the dish by provided ingredients and displays found data</string>
+    <string name="info_ps">Also it implements MMVM architecture</string>
+    <string name="search_field_label">Input ingredient</string>
+    <string name="search_btn_txt">Find recipe</string>
+    <string name="loading_txt">Loading...</string>
+    <string name="api_call_err_msg">Error has happened, while getting the data</string>
+    <string name="found_items_count">Found %d recipes</string>
+    <string name="calories_amnt">Calories %.2f cal</string>
+    <string name="home_pg_label">Home</string>
+    <string name="info_pg_label">Info</string>
 </resources>

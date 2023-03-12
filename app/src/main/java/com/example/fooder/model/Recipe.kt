@@ -15,8 +15,6 @@ data class Recipe (
     var calories: Float?,
 )
 
-data class Success(val recipes: List<Recipe>)
-
 data class Hit (
     var recipe: Recipe?
 )

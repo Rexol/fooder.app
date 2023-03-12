@@ -4,36 +4,25 @@ import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.compose.foundation.layout.*
-import androidx.compose.foundation.lazy.LazyColumn
-import androidx.compose.foundation.lazy.items
-import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.Favorite
 import androidx.compose.material.icons.filled.Home
 import androidx.compose.material.icons.filled.Info
 import androidx.compose.material3.*
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.layout.ContentScale
-import androidx.compose.ui.modifier.modifierLocalConsumer
 import androidx.compose.ui.res.stringResource
-import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.tooling.preview.Preview
-import androidx.compose.ui.unit.dp
 import androidx.navigation.NavHostController
 import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
-import coil.compose.AsyncImage
 import com.example.fooder.R
-import com.example.fooder.model.Recipe
 import com.example.fooder.model.TabItem
 import com.example.fooder.ui.theme.FooderTheme
 import com.example.fooder.viewmodel.NavigationViewModel
-import com.example.fooder.viewmodel.RecipeSearchViewModel
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -55,8 +44,8 @@ class MainActivity : ComponentActivity() {
 @Composable
 fun MyApp() {
     val pages = listOf(
-        TabItem("Home", Icons.Filled.Home, "home"),
-        TabItem("Info", Icons.Filled.Info, "info"),
+        TabItem(stringResource(R.string.home_pg_label), Icons.Filled.Home, "home"),
+        TabItem(stringResource(R.string.info_pg_label), Icons.Filled.Info, "info"),
     )
     PageSkeleton(items = pages)
 }
@@ -105,19 +94,19 @@ fun InfoScreen() {
         horizontalAlignment = Alignment.Start,
     ) {
         Text(
-            text = "Info",
+            text = stringResource(R.string.info_page_title),
             style = MaterialTheme.typography.headlineMedium,
         )
         Text(
-            text = "This application was implemented as a final project for the mobile development with native technologies course",
+            text = stringResource(R.string.info_why),
             style = MaterialTheme.typography.bodyMedium,
         )
         Text(
-            text = "It prints searches the dish by provided ingredients and displays found data",
+            text = stringResource(R.string.info_what),
             style = MaterialTheme.typography.bodyMedium,
         )
         Text(
-            text = "Also it implements MMVM architecture",
+            text = stringResource(R.string.info_ps),
             style = MaterialTheme.typography.bodyMedium,
         )
     }
