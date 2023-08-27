@@ -2,15 +2,23 @@
 
 ## Description
 
-This is and android application that can find the dish name by provided ingredient.
+Welcome to Fooder.app! This Android application helps you discover dish names based on the provided ingredients. It leverages the Jetpack Compose framework, Kotlin coroutines, and Retrofit for making API calls. This project was developed as the final assignment for the "Mobile Programming with Native Technologies" course.
 
-## How to run
+| Main view                                    | Results                                      | Info                                         |
+| -------------------------------------------- | -------------------------------------------- | -------------------------------------------- |
+| ![](md-assets/2023-08-27-15-37-16-image.png) | ![](md-assets/2023-08-27-15-38-25-image.png) | ![](md-assets/2023-08-27-15-38-48-image.png) |
 
-To build the project you need to add `gradle.properties` file into project root that is ignored by VCS.
+## How to Run
 
-The contents of the file:
+Follow these steps to build and run the project:
 
-```
+1. Create a `gradle.properties` file in the project root directory. This file will be ignored by version control.
+
+2. This application uses the [Edamam Recipe API](https://developer.edamam.com/edamam-recipe-api). To utilize the API, you need to register and obtain API keys.
+
+3. Inside the `gradle.properties` file, add your API keys like this:
+
+```gradle
 # Project-wide Gradle settings.
 # IDE (e.g. Android Studio) users:
 # Gradle settings configured through the IDE *will override*
